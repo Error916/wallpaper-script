@@ -3,12 +3,11 @@
 LC_ALL=C
 LANG=C
 
-schermi=$(xrandr | grep -w connected | cut -d ' ' -f1)
-arg=""
+schermi=$(xrandr | awk '/\<connected\>/{ print $1}')
 
 for i in $schermi;
-	do screen=$(ls -R ~/wallpapers |awk '/:$/&&f{s=$0;f=0}/:$/&&!f{sub(/:$/,"");s=$0;f=1;next}NF&&f{print s"/"$0}' |sort -R |tail -1);
-	arg+="--output $i --stretch $screen ";
+	do screen=$(find ~/wallpapers -type f |sort -R |tail -n1);
+	arg+=(--output "$i" --stretch "$screen");
 done
 
-xwallpaper $arg
+xwallpaper "${arg[@]}"
