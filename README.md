@@ -1,5 +1,9 @@
 # wallpaper-script
-bash script do change wallpaper on all monitors
+shell script do change wallpaper on all monitors for X
 # depedences
-- bash
+- sh
 - xwallpaper
+# cronjob
+if you want to use this script as cronjob add
+	export DISPLAY=DISPLAYNUMER
+you can find you display number by echo $DISPLAY inside your terminal

@@ -1,13 +1,19 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
+
+#uncomment if you want to use as cronjob
+#export DISPLAY=:0
 
 LC_ALL=C
 LANG=C
 
 schermi=$(xrandr | awk '/\<connected\>/{ print $1}')
 
+echo "" > /tmp/wallscript;
+
 for i in $schermi;
-	do screen=$(find ~/wallpapers -type f |sort -R |tail -n1);
+	do screen=$(find ~/wallpapers -type f |shuf -n1);
+	echo "wall $i : $screen" >> /tmp/wallscript;
 	arg+=(--output "$i" --stretch "$screen");
 done
 
-xwallpaper "${arg[@]}"
+xwallpaper "${arg[@]}" &
