@@ -16,4 +16,6 @@ for i in $schermi;
 	arg+=(--output "$i" --stretch "$screen");
 done
 
+printf "\n" >> /tmp/wallscript;
+
 xwallpaper "${arg[@]}" &
