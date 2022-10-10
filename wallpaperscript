@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 #uncomment if you want to use as cronjob
 #export DISPLAY=:0
@@ -8,7 +8,7 @@ LANG=C
 
 schermi=$(xrandr | awk '/\<connected\>/{ print $1}')
 
-: > /tmp/wallscript;
+date "+%a %d, %H:%M:%S" >> /tmp/wallscript;
 
 for i in $schermi;
 	do screen=$(find ~/wallpapers -type f |shuf -n1);
